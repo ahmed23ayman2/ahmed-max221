@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ahmed Max – مكتبة ضخمة</title>
+  <style>
+    body { background:#111; color:#fff; font-family:'Cairo',sans-serif; margin:0; padding:0; }
+    header { background:#d62828; padding:1rem; text-align:center; font-size:1.8rem; font-weight:bold; }
+    .nav { display:flex; justify-content:center; gap:1rem; background:#222; padding:0.5rem 0; }
+    .nav button { background:#444; color:#fff; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:5px; }
+    .nav button.active { background:#f77f00; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1rem; padding:1rem; }
+    .card { background:#222; border-radius:6px; overflow:hidden; text-align:center; }
+    .card img { width:100%; height:200px; object-fit:cover; }
+    .card h3 { margin:0.5rem 0; font-size:1rem; }
+    .card button { margin-bottom:0.5rem; padding:0.5rem 1rem; border:none; background:#003049; color:#fff; border-radius:4px; cursor:pointer;}
+    .video-modal { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; }
+    .video-content { width:90%; max-width:800px; position:relative; }
+    .tabs { display:flex; justify-content:center; margin-bottom:1rem; gap:1rem; }
+    .tab-btn { background:#333; color:#fff; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:5px;}
+    .tab-btn.active { background:#f77f00; }
+    .video-frame { width:100%; height:450px; border:none; border-radius:8px;}
+    .close-btn { position:absolute; top:8px; right:8px; background:#d62828; color:#fff; border:none; font-size:1.2rem; padding:0.2rem 0.6rem; border-radius:50%; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header>Ahmed Max – مكتبة ضخمة</header>
+  <nav class="nav">
+    <button class="active" data-cat="foreign">50 فيلم أجنبي</button>
+    <button data-cat="arabic">50 فيلم عربي</button>
+    <button data-cat="anime">50 أنمي</button>
+    <button data-cat="comedy">50 كوميدي</button>
+    <button data-cat="series">50 مسلسل</button>
+  </nav>
+
+  <div id="content" class="grid"></div>
+
+  <!-- Modal عرض الفيديو -->
+  <div id="video-modal" class="video-modal" onclick="closeModal()">
+    <div class="video-content" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <div class="tabs" id="modal-tabs"></div>
+      <iframe id="modal-player" class="video-frame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    const categories = {
+      foreign: { title: 'فيلم أجنبي', prefix:'Foreign Movie' },
+      arabic: { title: 'فيلم عربي', prefix:'Arabic Movie' },
+      anime: { title: 'أنمي', prefix:'Anime Show' },
+      comedy: { title: 'فيلم كوميدي', prefix:'Comedy Movie' },
+      series: { title: 'مسلسل', prefix:'Series Show' }
+    };
+
+    const container = document.getElementById('content');
+    const navBtns = document.querySelectorAll('.nav button');
+
+    function render(cat) {
+      container.innerHTML = '';
+      for (let i = 1; i <= 50; i++) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+          <img src="https://via.placeholder.com/300x200?text=${categories[cat].prefix}+${i}" alt="">
+          <h3>${categories[cat].title} ${i}</h3>
+          <button onclick="openModal('${cat} ${i}')">شاهد</button>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        render(btn.dataset.cat);
+      });
+    });
+
+    render('foreign');
+
+    // فيديو مودال
+    const modal = document.getElementById('video-modal');
+    const modalPlayer = document.getElementById('modal-player');
+    const modalTabs = document.getElementById('modal-tabs');
+
+    function openModal(name) {
+      modal.style.display = 'flex';
+      modalTabs.innerHTML = `
+        <button class="tab-btn active" data-src="https://www.w3schools.com/html/mov_bbb.mp4">مشغل داخلي</button>
+        <button class="tab-btn" data-src="https://vidsrc.to/embed/movie/tt4154796">خارجي 1</button>
+        <button class="tab-btn" data-src="https://www.youtube.com/embed/TcMBFSGVi1c">خارجي 2</button>
+      `;
+      modalTabs.querySelectorAll('.tab-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          modalTabs.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          modalPlayer.src = btn.dataset.src;
+        });
+      });
+      modalPlayer.src = modalTabs.querySelector('.tab-btn.active').dataset.src;
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modalPlayer.src = '';
+    }
+  </script>
+</body>
+</html>
