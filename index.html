@@ -1,34 +1,94 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ahmed Max - أفلام أجنبية مترجمة</title>
   <style>
-    body {margin:0;background:#111;color:#fff;font-family:tahoma}
-    header {background:#c62828;padding:20px;text-align:center;font-size:24px}
-    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px}
-    .card {background:#222;border-radius:10px;overflow:hidden;box-shadow:0 0 10px #000}
-    .card img {width:100%;height:250px;object-fit:cover}
-    .title {padding:10px;font-size:16px;font-weight:bold;text-align:center}
-    .actions {display:flex;justify-content:space-around;padding:10px}
-    .actions button, .actions a {background:#0288d1;border:none;color:#fff;padding:6px 12px;border-radius:5px;text-decoration:none}
-    .player, .overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000}
-    .overlay {background:rgba(0,0,0,0.8)}
-    .player video {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;max-height:90%;border:4px solid #fff;border-radius:10px}
+    body { margin: 0; background: #111; color: #fff; font-family: sans-serif; }
+    header { background: #c62828; padding: 20px; text-align: center; font-size: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 20px; }
+    .card { background: #222; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px #000; }
+    .card img { width: 100%; height: 250px; object-fit: cover; }
+    .title { padding: 10px; font-size: 16px; font-weight: bold; text-align: center; }
+    .actions { display: flex; justify-content: space-around; padding: 10px; }
+    .actions button, .actions a {
+      background: #0288d1; border: none; color: #fff; padding: 6px 12px;
+      border-radius: 5px; cursor: pointer; text-decoration: none;
+    }
+    .player, .overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: 1000;
+    }
+    .overlay { background: rgba(0,0,0,0.8); }
+    .player video {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%; max-height: 90%;
+      border: 4px solid #fff; border-radius: 10px;
+    }
   </style>
 </head>
 <body>
-  <header>Ahmed Max - مكتبة أفلام أجنبية مترجمة</header>  <div class="grid">
+
+  <header>Ahmed Max - مكتبة أفلام أجنبية مترجمة</header>
+
+  <div class="grid">
     <div class="card">
       <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg">
       <div class="title">Inception - مترجم</div>
       <div class="actions">
         <button onclick="playVideo('https://archive.org/download/inception_202107/Inception.mp4')">مشاهدة</button>
-        <a href="https://archive.org/download/inception_202107/Inception.mp4" download><button>تحميل</button></a>
+        <a href="https://archive.org/download/inception_202107/Inception.mp4" download>تحميل</a>
       </div>
     </div>
+
     <div class="card">
       <img src="https://m.media-amazon.com/images/I/91NI1PZfzyL._AC_SY679_.jpg">
       <div class="title">John Wick - مترجم</div>
       <div class="actions">
-        <button onclick="play
+        <button onclick="playVideo('https://archive.org/download/john-wick-1-2014_202101/John%20Wick%201%20%282014%29.mp4')">مشاهدة</button>
+        <a href="https://archive.org/download/john-wick-1-2014_202101/John%20Wick%201%20%282014%29.mp4" download>تحميل</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/71niXI3lxlL._AC_SY679_.jpg">
+      <div class="title">The Matrix - مترجم</div>
+      <div class="actions">
+        <button onclick="playVideo('https://archive.org/download/the-matrix-1999_202105/The%20Matrix%20%281999%29.mp4')">مشاهدة</button>
+        <a href="https://archive.org/download/the-matrix-1999_202105/The%20Matrix%20%281999%29.mp4" download>تحميل</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/61nCly8UuOL._AC_SY741_.jpg">
+      <div class="title">Interstellar - مترجم</div>
+      <div class="actions">
+        <button onclick="playVideo('https://archive.org/download/interstellar_202103/Interstellar.mp4')">مشاهدة</button>
+        <a href="https://archive.org/download/interstellar_202103/Interstellar.mp4" download>تحميل</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeVideo()"></div>
+  <div class="player" id="player">
+    <video id="video" controls autoplay></video>
+  </div>
+
+  <script>
+    function playVideo(link) {
+      document.getElementById('video').src = link;
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('player').style.display = 'block';
+    }
+    function closeVideo() {
+      const video = document.getElementById('video');
+      video.pause();
+      video.src = '';
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('player').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
