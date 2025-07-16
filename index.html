@@ -2,118 +2,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahmed Max - مكتبة أفلام</title>
+  <title>Ahmed Max - أفلام مترجمة</title>
   <style>
     body {
-      background-color: #111;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      background-color: #111;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
     }
     header {
-      background-color: #d32f2f;
+      background-color: #c62828;
       padding: 20px;
       text-align: center;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
     }
-    .tabs {
+    nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       background-color: #222;
-      flex-wrap: wrap;
     }
-    .tab {
+    nav div {
       padding: 10px 20px;
       cursor: pointer;
-      background-color: #333;
       margin: 5px;
+      background-color: #333;
       border-radius: 5px;
     }
-    .tab.active {
+    nav .active {
       background-color: orange;
-      color: black;
+      color: #000;
     }
     .movie-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
       padding: 20px;
     }
     .movie-card {
-      background-color: #1c1c1c;
-      border-radius: 8px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
       overflow: hidden;
       text-align: center;
+      box-shadow: 0 0 10px #000;
     }
     .movie-card img {
       width: 100%;
-      height: 240px;
+      height: 250px;
       object-fit: cover;
     }
     .movie-title {
-      padding: 10px 0;
+      padding: 10px;
       font-size: 16px;
+      font-weight: bold;
     }
-    .watch-btn {
-      display: block;
-      padding: 8px;
+    .btns {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px;
+    }
+    .btns a {
+      padding: 6px 12px;
       background-color: #0288d1;
-      color: white;
-      text-decoration: none;
-      margin: 0 20px 10px 20px;
+      color: #fff;
       border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <header>Ahmed Max - مكتبة أفلام ضخمة</header>
-  <div class="tabs">
+  <header>Ahmed Max - مكتبة أفلام مترجمة</header>
+  <nav>
     <div class="tab active" onclick="showTab('foreign')">أفلام أجنبية</div>
     <div class="tab" onclick="showTab('arabic')">أفلام عربية</div>
-  </div>  <div id="foreign" class="movie-grid">
-    <!-- أفلام أجنبية حقيقية -->
+    <div class="tab" onclick="showTab('action')">أكشن</div>
+    <div class="tab" onclick="showTab('anime')">أنمي</div>
+    <div class="tab" onclick="showTab('series')">مسلسلات</div>
+  </nav>  <div id="foreign" class="movie-grid">
     <div class="movie-card">
       <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg" alt="Inception">
-      <div class="movie-title">Inception</div>
-      <a href="https://www.youtube.com/watch?v=YoHD9XEInc0" class="watch-btn" target="_blank">شاهد</a>
+      <div class="movie-title">Inception - مترجم</div>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=YoHD9XEInc0" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
     </div>
     <div class="movie-card">
       <img src="https://m.media-amazon.com/images/I/91NI1PZfzyL._AC_SY679_.jpg" alt="John Wick">
-      <div class="movie-title">John Wick</div>
-      <a href="https://www.youtube.com/watch?v=2AUmvWm5ZDQ" class="watch-btn" target="_blank">شاهد</a>
+      <div class="movie-title">John Wick - مترجم</div>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=2AUmvWm5ZDQ" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
     </div>
-    <div class="movie-card">
-      <img src="https://m.media-amazon.com/images/I/91zr1DiKJtL._AC_SY679_.jpg" alt="Interstellar">
-      <div class="movie-title">Interstellar</div>
-      <a href="https://www.youtube.com/watch?v=zSWdZVtXT7E" class="watch-btn" target="_blank">شاهد</a>
-    </div>
-    <!-- (أضف باقي الأفلام بنفس الشكل لاحقًا لو حبيت) -->
   </div>  <div id="arabic" class="movie-grid" style="display:none">
-    <!-- أفلام عربية حقيقية -->
     <div class="movie-card">
       <img src="https://i.imgur.com/dhEw7xj.jpg" alt="الفيل الأزرق">
       <div class="movie-title">الفيل الأزرق</div>
-      <a href="https://www.youtube.com/watch?v=1nBwfZZvjKo" class="watch-btn" target="_blank">شاهد</a>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=1nBwfZZvjKo" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
     </div>
     <div class="movie-card">
       <img src="https://i.imgur.com/RcSuCox.jpg" alt="كازابلانكا">
       <div class="movie-title">كازابلانكا</div>
-      <a href="https://www.youtube.com/watch?v=GJjVhEOK1tQ" class="watch-btn" target="_blank">شاهد</a>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=GJjVhEOK1tQ" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
     </div>
+  </div>  <div id="action" class="movie-grid" style="display:none">
+    <!-- أكشن -->
     <div class="movie-card">
-      <img src="https://i.imgur.com/HFAaHOS.jpg" alt="وقفة رجالة">
-      <div class="movie-title">وقفة رجالة</div>
-      <a href="https://www.youtube.com/watch?v=MyDGWjNvY58" class="watch-btn" target="_blank">شاهد</a>
+      <img src="https://m.media-amazon.com/images/I/51oDs3FzJlL._AC_.jpg" alt="Mad Max">
+      <div class="movie-title">Mad Max: Fury Road</div>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=hEJnMQG9ev8" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
     </div>
-    <!-- (أضف باقي الأفلام بنفس الشكل لاحقًا لو حبيت) -->
+  </div>  <div id="anime" class="movie-grid" style="display:none">
+    <!-- أنمي -->
+    <div class="movie-card">
+      <img src="https://cdn.myanimelist.net/images/anime/11/39717.jpg" alt="Death Note">
+      <div class="movie-title">Death Note - مترجم</div>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=NlJZ-YgAt-c" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
+    </div>
+  </div>  <div id="series" class="movie-grid" style="display:none">
+    <!-- مسلسلات -->
+    <div class="movie-card">
+      <img src="https://m.media-amazon.com/images/I/71hZzDbqQML._AC_UF894,1000_QL80_.jpg" alt="Breaking Bad">
+      <div class="movie-title">Breaking Bad - مترجم</div>
+      <div class="btns">
+        <a href="https://www.youtube.com/watch?v=HhesaQXLuRY" target="_blank">مشاهدة</a>
+        <a href="#">تحميل</a>
+      </div>
+    </div>
   </div>  <script>
-    function showTab(tab) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.movie-grid').forEach(g => g.style.display = 'none');
-      document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
-      document.getElementById(tab).style.display = 'grid';
+    function showTab(tabId) {
+      document.querySelectorAll("nav .tab").forEach(tab => tab.classList.remove("active"));
+      document.querySelectorAll(".movie-grid").forEach(grid => grid.style.display = "none");
+      document.querySelector(`nav .tab[onclick*='${tabId}']`).classList.add("active");
+      document.getElementById(tabId).style.display = "grid";
     }
   </script></body>
 </html>
