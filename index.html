@@ -1,129 +1,34 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ahmed Max - أفلام أجنبية مترجمة</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #111;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    header {
-      background-color: #c62828;
-      padding: 20px;
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .movie-card {
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      overflow: hidden;
-      text-align: center;
-      box-shadow: 0 0 10px #000;
-    }
-    .movie-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-    .movie-title {
-      padding: 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .btns {
-      display: flex;
-      justify-content: space-around;
-      margin: 10px;
-    }
-    .btns button {
-      padding: 6px 12px;
-      background-color: #0288d1;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .video-player {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #000;
-      z-index: 999;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .video-player video {
-      width: 100%;
-      max-width: 700px;
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 998;
-      display: none;
-    }
+    body {margin:0;background:#111;color:#fff;font-family:tahoma}
+    header {background:#c62828;padding:20px;text-align:center;font-size:24px}
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px}
+    .card {background:#222;border-radius:10px;overflow:hidden;box-shadow:0 0 10px #000}
+    .card img {width:100%;height:250px;object-fit:cover}
+    .title {padding:10px;font-size:16px;font-weight:bold;text-align:center}
+    .actions {display:flex;justify-content:space-around;padding:10px}
+    .actions button, .actions a {background:#0288d1;border:none;color:#fff;padding:6px 12px;border-radius:5px;text-decoration:none}
+    .player, .overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000}
+    .overlay {background:rgba(0,0,0,0.8)}
+    .player video {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90%;max-height:90%;border:4px solid #fff;border-radius:10px}
   </style>
 </head>
 <body>
-  <header>Ahmed Max - 50 فيلم أجنبي مترجم</header>
-
-  <div class="movie-grid">
-    <div class="movie-card">
-      <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg" alt="Inception">
-      <div class="movie-title">Inception - مترجم</div>
-      <div class="btns">
+  <header>Ahmed Max - مكتبة أفلام أجنبية مترجمة</header>  <div class="grid">
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/81p+xe8cbnL._AC_SY679_.jpg">
+      <div class="title">Inception - مترجم</div>
+      <div class="actions">
         <button onclick="playVideo('https://archive.org/download/inception_202107/Inception.mp4')">مشاهدة</button>
         <a href="https://archive.org/download/inception_202107/Inception.mp4" download><button>تحميل</button></a>
       </div>
     </div>
-    <div class="movie-card">
-      <img src="https://m.media-amazon.com/images/I/91NI1PZfzyL._AC_SY679_.jpg" alt="John Wick">
-      <div class="movie-title">John Wick - مترجم</div>
-      <div class="btns">
-        <button onclick="playVideo('https://archive.org/download/john-wick-1-2014_202101/John%20Wick%201%20%282014%29.mp4')">مشاهدة</button>
-        <a href="https://archive.org/download/john-wick-1-2014_202101/John%20Wick%201%20%282014%29.mp4" download><button>تحميل</button></a>
-      </div>
-    </div>
-    <!-- أضف باقي 50 فيلم بنفس النمط -->
-  </div>
-
-  <div class="overlay" id="overlay" onclick="closeVideo()"></div>
-  <div class="video-player" id="player">
-    <video id="video" controls autoplay></video>
-  </div>
-
-  <script>
-    function playVideo(url) {
-      document.getElementById('video').src = url;
-      document.getElementById('player').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
-    function closeVideo() {
-      const player = document.getElementById('player');
-      const overlay = document.getElementById('overlay');
-      const video = document.getElementById('video');
-      video.pause();
-      video.src = '';
-      player.style.display = 'none';
-      overlay.style.display = 'none';
-    }
-  </script>
-</body>
-</html>
+    <div class="card">
+      <img src="https://m.media-amazon.com/images/I/91NI1PZfzyL._AC_SY679_.jpg">
+      <div class="title">John Wick - مترجم</div>
+      <div class="actions">
+        <button onclick="play
